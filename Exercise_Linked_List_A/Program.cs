@@ -31,7 +31,20 @@ namespace Exercise_Linked_List_A
                     if (rollNo == current.rollNumber)
                         return (true);/*returns true if the node is found*/
                 }
+                if (rollNo == LAST.rollNumber)/*If the node is present at the end*/
+                    return true;
+                else
+                    return (false);/*returns false if the node is not found*/
             }
+            public bool listEmpty()
+            {
+                if (LAST == null)
+                    return true;
+                else
+                    return false;
+            }
+
+            
         }
     }
 }
