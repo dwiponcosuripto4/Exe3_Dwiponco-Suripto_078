@@ -12,6 +12,7 @@ namespace Exercise_Linked_List_A
         public int rollNumber;
         public string name;
         public Node next;
+        public Node prev;
     }
     class CircularList
     {
@@ -22,19 +23,70 @@ namespace Exercise_Linked_List_A
             LAST = null;
         }
 
+        public void addNode()
+        {
+            int rollNo;
+            string name;
+            Console.Write("\nEnter the name of the student: ");
+            rollNo = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\nEnter the name of the student: ");
+            name = Console.ReadLine();
+            Node newnode = new Node();
+            newnode.rollNumber = rollNo;
+            newnode.name = name;
+            /*Checks if the list empty*/
+            if (LAST == null || rollNo <= LAST.rollNumber)
+            {
+                if ((LAST != null) && (rollNo == LAST.rollNumber))
+                {
+                    Console.WriteLine("\nDuplicate roll numbers not allowed");
+                    return;
+                }
+                newnode.next = LAST;
+                if (LAST != null)
+                    LAST.prev = newnode;
+                newnode.prev = null;
+                LAST = newnode;
+                return;
+            }
+            Node previous, current;
+            for (current = previous = LAST; current != null &&
+                rollNo >= current.rollNumber; previous = current, current =
+                current.next)
+            {
+                if (rollNo == current.rollNumber)
+                {
+                    Console.WriteLine("\nDuplicate roll numbers not allowed");
+                    return;
+                }
+            }
+            /*On the execution of the above for loop, prev and
+             * current will point to those nodes
+             between which the new node is to interseted.*/
+            newnode.next = current;
+            newnode.prev = previous;
+
+            /*if the node is to be interested at the end of the list.*/
+            if (current == null)
+            {
+                newnode.next = null;
+                previous.next = newnode;
+                return;
+            }
+            current.prev = newnode;
+            previous.next = newnode;
+        }
         public bool Search(int rollNo, ref Node previous, ref Node current)/*Searches for the specified node*/
         {
             for (previous = current = LAST.next; current != LAST; previous = current, current = current.next)
             {
-                if (previous = current = current.next)
-                {
-                    if (rollNo == current.rollNumber)
-                        return (true);/*returns true if the node is found*/
-                }
-                if (rollNo == LAST.rollNumber)/*If the node is present at the end*/
-                    return true;
-                else
-                    return (false);/*returns false if the node is not found*/
+                if (rollNo == current.rollNumber)
+                    return (true);/*returns true if the node is found*/
+            }
+            if (rollNo == LAST.rollNumber)/*If the node is present at the end*/
+                return true;
+            else
+                return (false);/*returns false if the node is not found*/
             }
             public bool listEmpty()
             {
@@ -80,6 +132,7 @@ namespace Exercise_Linked_List_A
                         Console.WriteLine("2. Search for a record in the list");
                         Console.WriteLine("3. Display the first record in the list");
                         Console.WriteLine("4. Exit");
+                        Console.WriteLine("5. Add a record to the list");
                         Console.Write("\n Enter your choice (1-4): ");
                         char ch = Convert.ToChar(Console.ReadLine());
                         switch (ch)
@@ -116,6 +169,8 @@ namespace Exercise_Linked_List_A
                                 break;
                             case '4':
                                 return;
+                        
+                            break;
                             default:
                                 {
                                     Console.WriteLine("Invalid option");
@@ -131,4 +186,3 @@ namespace Exercise_Linked_List_A
             }
         }
     }
-}
