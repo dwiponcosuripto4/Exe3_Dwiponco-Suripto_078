@@ -151,7 +151,7 @@ namespace Exercise_Linked_List_A
                         Console.WriteLine("4. Exit");
                         Console.WriteLine("5. Add a record to the list");
                         Console.WriteLine("6. Delete a record to the list");
-                        Console.Write("\n Enter your choice (1-4): ");
+                        Console.Write("\n Enter your choice (1-6): ");
                         char ch = Convert.ToChar(Console.ReadLine());
                         switch (ch)
                         {
