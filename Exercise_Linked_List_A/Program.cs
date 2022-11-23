@@ -34,7 +34,6 @@ namespace Exercise_Linked_List_A
             Node newnode = new Node();
             newnode.rollNumber = rollNo;
             newnode.name = name;
-            /*Checks if the list empty*/
             if (LAST == null || rollNo <= LAST.rollNumber)
             {
                 if ((LAST != null) && (rollNo == LAST.rollNumber))
@@ -60,13 +59,8 @@ namespace Exercise_Linked_List_A
                     return;
                 }
             }
-            /*On the execution of the above for loop, prev and
-             * current will point to those nodes
-             between which the new node is to interseted.*/
             newnode.next = current;
             newnode.prev = previous;
-
-            /*if the node is to be interested at the end of the list.*/
             if (current == null)
             {
                 newnode.next = null;
@@ -95,8 +89,31 @@ namespace Exercise_Linked_List_A
                 else
                     return false;
             }
+             public bool delNode(int rollNo)/*Deletes the specifed node*/
+             {
+            Node previous, current;
+            previous = current = null;
+            if (Search(rollNo, ref previous, ref current) == false)
+                return false;
+            if (current == LAST)/*If the first node is to deleted*/
+            {
+                LAST = LAST.next;
+                if (LAST != null)
+                    LAST.prev = null;
+                return true;
+            }
+            if (current.next == null)/*If the last node isto be deleted*/
+            {
+                previous.next = null;
+                return true;
+            }
+            /*If the node to be deleted is in between the list the the following lines of code is executed.*/
+            previous.next = current.next;
+            current.next.prev = previous;
+            return true;
+            }
 
-            public void traverse()/*Traverses all the node of the list*/
+        public void traverse()/*Traverses all the node of the list*/
             {
                 if (listEmpty())
                     Console.WriteLine("\nList is empty");
