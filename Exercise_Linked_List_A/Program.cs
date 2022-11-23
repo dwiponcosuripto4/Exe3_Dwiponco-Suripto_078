@@ -84,8 +84,48 @@ namespace Exercise_Linked_List_A
                         char ch = Convert.ToChar(Console.ReadLine());
                         switch (ch)
                         {
-
+                            case '1':
+                                {
+                                    obj.traverse();
+                                }
+                                break;
+                            case '2':
+                                {
+                                    if (obj.listEmpty() == true)
+                                    {
+                                        Console.WriteLine("\nList is empty");
+                                        break;
+                                    }
+                                    Node prev, curr;
+                                    prev = curr = null;
+                                    Console.Write("\nEnter the roll number of the student whose record is to be searched: ");
+                                    int num = Convert.ToInt32(Console.ReadLine());
+                                    if (obj.Search(num, ref prev, ref curr) == false)
+                                        Console.WriteLine("\nRecord not found");
+                                    else
+                                    {
+                                        Console.WriteLine("\nRecord found");
+                                        Console.WriteLine("\nRoll number: " + curr.rollNumber);
+                                    }
+                                }
+                                break;
+                            case '3':
+                                {
+                                    obj.firstNode();
+                                }
+                                break;
+                            case '4':
+                                return;
+                            default:
+                                {
+                                    Console.WriteLine("Invalid option");
+                                    break;
+                                }
                         }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
                     }
                 }
             }
