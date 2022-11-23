@@ -169,7 +169,10 @@ namespace Exercise_Linked_List_A
                                 break;
                             case '4':
                                 return;
-                        
+                        case '5':
+                            {
+                                obj.addNode();
+                            }
                             break;
                             default:
                                 {
