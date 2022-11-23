@@ -150,6 +150,7 @@ namespace Exercise_Linked_List_A
                         Console.WriteLine("3. Display the first record in the list");
                         Console.WriteLine("4. Exit");
                         Console.WriteLine("5. Add a record to the list");
+                        Console.WriteLine("6. Delete a record to the list");
                         Console.Write("\n Enter your choice (1-4): ");
                         char ch = Convert.ToChar(Console.ReadLine());
                         switch (ch)
@@ -186,10 +187,26 @@ namespace Exercise_Linked_List_A
                                 break;
                             case '4':
                                 return;
-                        case '5':
-                            {
-                                obj.addNode();
-                            }
+                            case '5':
+                                {
+                                    obj.addNode();
+                                }
+                                break;
+                            case '6':
+                                {
+                                    if (obj.listEmpty())
+                                    {
+                                        Console.WriteLine("\nList is empty");
+                                        break;
+                                    }
+                                    Console.Write("\nEnter the roll number of the student" + " whose record is to be deleted: ");
+                                    int rollNo = Convert.ToInt32(Console.ReadLine());
+                                    Console.WriteLine();
+                                    if (obj.delNode(rollNo) == false)
+                                        Console.WriteLine("Record not found");
+                                    else
+                                        Console.WriteLine("Record with roll number " + rollNo + "deleted \n");
+                                }
                             break;
                             default:
                                 {
